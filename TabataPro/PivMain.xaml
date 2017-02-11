@@ -1,0 +1,145 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input" 
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:controls="clr-namespace:U2UC.WP8.Controls;assembly=U2UC.WP8.Controls"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    x:Class="TabataPro.PivMain"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <phone:Pivot Title="Tabata Life">
+
+            <!-- workout -->
+            <phone:PivotItem Header="Workout" Margin="0,0,-1,0">
+                <Grid>
+
+                    <controls:Gauge 
+                        x:Name="mainGauge"
+                		Margin="1,-38,0,48"
+                                    Maximum="20"
+                		TickBrush="CadetBlue">
+
+                        <controls:Gauge.ScaleBrush>
+                            <SolidColorBrush Color="Blue"
+                				Opacity=".5" />
+                        </controls:Gauge.ScaleBrush>
+
+                        <controls:Gauge.NeedleBrush>
+                            <SolidColorBrush Color="Yellow"  Opacity=".75"/>
+                        </controls:Gauge.NeedleBrush>
+
+                    </controls:Gauge>
+                    <TextBlock x:Name="txtBlkCurrentExercise" HorizontalAlignment="Center" Margin="0,433,0,0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40" Height="65" RenderTransformOrigin="0.5,0.5" Width="481" Foreground="#FFF50404"/>
+                    <Rectangle HorizontalAlignment="Left" Height="96" Margin="103,83,0,0" VerticalAlignment="Top" Width="272" Fill="Black"/>
+                    <Button x:Name="btnBuy" Content="Buy Tabata PRO!" HorizontalAlignment="Left" Margin="33,474,0,0" VerticalAlignment="Top" Width="401" Click="btnBuy_Click" Visibility="Collapsed"/>
+
+
+                    <UI:AdControl ApplicationId="2c5fe07d-c2db-452d-8270-bdfea4e78368" AdUnitId="146458" HorizontalAlignment="Left" Height="80" Margin="0,488,0,0" VerticalAlignment="Top" Width="480"/>
+                    <TextBlock x:Name="txtMainTimer" HorizontalAlignment="Left" Margin="1,112,0,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Height="80" Width="480" FontFamily="fonts/DigitalDream.ttf#Digital Dream" FontSize="65" Foreground="#FF28E80A" TextAlignment="Center" FontWeight="Bold"/>
+                    <Rectangle Fill="Black" HorizontalAlignment="Left" Height="54" Margin="103,200,0,0" VerticalAlignment="Top" Width="276"/>
+                    <TextBlock x:Name="txtBlkState" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="60" Width="481" Foreground="#FFFD0808" Text="Press Start"/>
+                    <Rectangle Fill="Black" HorizontalAlignment="Left" Height="47" Margin="153,274,0,0" VerticalAlignment="Top" Width="176"/>
+                    <TextBlock x:Name="txtBlkIntervalTime" HorizontalAlignment="Left" Margin="267,274,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" FontSize="35" Width="66" RenderTransformOrigin="0.695,0.948"/>
+                    <TextBlock x:Name="txtBlkIntervalTime_Copy" HorizontalAlignment="Left" Margin="160,277,0,0" TextWrapping="Wrap" Text="Interval" VerticalAlignment="Top" FontSize="30" Width="100" Height="35"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="119,80,0,0" TextWrapping="Wrap" Text="Remaining Workout Time" VerticalAlignment="Top" FontWeight="Bold"/>
+
+
+
+
+
+
+                </Grid>
+            </phone:PivotItem>
+
+            <!-- select exercises -->
+            <phone:PivotItem Header="Select Exercise" Margin="2,28,0,0">
+
+                <Grid Margin="0,-23,0,0">
+
+                    <telerikPrimitives:RadDataBoundListBox x:Name="rlExerciseTypes" 
+						IsCheckModeEnabled="True"
+						IsCheckModeActive="True" Margin="0,0,0,145">
+
+                        <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="{Binding ExerciseName}" 
+											Width="400"
+											Grid.Column="0" 
+											FontSize="30"
+											VerticalAlignment="Top"/>
+
+                                    </Grid>
+
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
+
+                    </telerikPrimitives:RadDataBoundListBox>
+
+                    <UI:AdControl ApplicationId="2c5fe07d-c2db-452d-8270-bdfea4e78368" AdUnitId="166243" HorizontalAlignment="Left" Height="80" Margin="-2,484,0,0" VerticalAlignment="Top" Width="480"/>
+                    <Button x:Name="btnAddExercise" Content="Add New Exercise" HorizontalAlignment="Left" Margin="98,411,0,0" VerticalAlignment="Top" Width="272" Click="btnAddExercise_Click"/>
+                </Grid>
+
+
+
+            </phone:PivotItem>
+
+            <!-- about -->
+            <phone:PivotItem Header="About" Margin="0,28,0,0">
+
+                <Grid Height="603" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="313" Width="436">
+						<Run Text="The Tabata Life Timer allows you to workout in the standard 4 minute Tabata period of: "/>
+						<LineBreak/>
+						<Run/>
+						<LineBreak/>
+						<Run Text="- 20 seconds of high intensity with "/>
+						<LineBreak/>
+						<Run Text="- 10 second rest breaks "/>
+						<LineBreak/>
+						<Run/>
+						<LineBreak/>
+						<Run Text="You can select pre-set exercices from the list or just use the time without selecting any exercises."/>
+						<LineBreak/>
+						<Run/>
+						<LineBreak/>
+						<Run Text="The timer beeps between intervals and advises you of what exercise is next. and when to rest."/>
+
+
+
+                    </TextBlock>
+                    <UI:AdControl ApplicationId="2c5fe07d-c2db-452d-8270-bdfea4e78368" AdUnitId="166245" HorizontalAlignment="Left" Height="80" Margin="0,523,0,0" VerticalAlignment="Top" Width="480"/>
+                    <Button x:Name="btnRate" Content="Rate Tabata Life" HorizontalAlignment="Left" Margin="81,328,0,0" VerticalAlignment="Top" Width="279" Click="btnRate_Click"/>
+                    <Button x:Name="btnEmail" Content="Email Developer" HorizontalAlignment="Left" Margin="81,400,0,0" VerticalAlignment="Top" Width="279" Click="btnEmail_Click"/>
+
+
+                </Grid>
+
+            </phone:PivotItem>
+
+        </phone:Pivot>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>
